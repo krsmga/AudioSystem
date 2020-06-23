@@ -13,7 +13,7 @@ For Android or iOS devices.
 3. **Icon Disabled Audio:** Attach a GameObject that contains an Image (Sprite) to represent the disabled audio. (Optional)
 
 4. **Icon Volume:** Attach images (Sprites) with a sequence that demonstrates the volume level. From the smallest to the largest. (Optional)
-<img src="../master/ExampleIcon.jpg">
+<img src="../master/ExampleIcons.jpg">
 
 5. **Audio Listener:** Attach the AudioListener component of the current scene.
 
