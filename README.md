@@ -3,7 +3,7 @@ This class controls the general Audio (AudioListener) of the current scene.
 For Android or iOS devices.
 
 ## Script settings in Inspector
-<img src="../master/Example.png">
+<img src="../master/Example1.png">
 
 ## Steps for use
 1. Attach the **AudioSystem.cs** script to any **GameObject** in the Scene.
