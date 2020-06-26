@@ -15,6 +15,8 @@ For Android or iOS devices.
 4. **Icon Volume:** Attach images (Sprites) with a sequence that demonstrates the volume level. From the smallest to the largest. (Optional)
 <img src="../master/ExampleIcons.jpg">
 
-5. **Audio Listener:** Attach the AudioListener component of the current scene.
+5. **Icon Volume:** Attach images (Sprites) with a sequence that demonstrates the volume level. From the smallest to the largest. (Optional)
 
-6. **Volume:** Sets the volume value of the General Audio (AudioListener).
+6. **Save Settings:** If true, allows you to save the latest audio settings before closing the application.
+
+7. **Volume:** Sets the volume value of the General Audio (AudioListener).
