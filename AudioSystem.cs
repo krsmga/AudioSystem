@@ -4,6 +4,7 @@
  * @create date 2020-06-23 15:13:45
  * @modify date 2020-06-26 17:42:57
  * @desc This class controls the general Audio (AudioListener) of the current scene.
+ * @github https://github.com/krsmga/AudioSystem
  */
 
 using System.Collections;
