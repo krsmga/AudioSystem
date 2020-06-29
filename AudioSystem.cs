@@ -4,7 +4,6 @@
  * @create date 2020-06-23 15:13:45
  * @modify date 2020-06-26 17:42:57
  * @desc This class controls the general Audio (AudioListener) of the current scene.
- * @github https://github.com/krsmga/AudioSystem
  */
 
 using System.Collections;
@@ -19,17 +18,15 @@ using UnityEngine.UI;
 /// <param name="_iconEnabledAudio">Attach a GameObject that contains an Image (Sprite) to represent the enabled audio.</param>
 /// <param name="_iconDisabledAudio">Attach a GameObject that contains an Image (Sprite) to represent the disabled audio. (Optional)</param>
 /// <param name="_iconVolume">Attach images (Sprites) with a sequence that demonstrates the volume level. From the smallest to the largest. (Optional)</param>
-/// <param name="_audioListener">Attach the AudioListener component of the current scene.</param>
 /// <param name="_saveSettings">If true, allows you to save the latest audio settings before closing the application.</param>
 /// <param name="_volume">Sets the volume value of the General Audio (AudioListener).</param>
 /// </remarks>
 public class AudioSystem : MonoBehaviour
 {
     [Header("Interface")]
-    [SerializeField] private GameObject _iconEnabledAudio = default;
-    [SerializeField] private GameObject _iconDisabledAudio = default;
+    [SerializeField] private GameObject[] _iconEnabledAudio = default;
+    [SerializeField] private GameObject[] _iconDisabledAudio = default;
     [SerializeField] private Sprite[] _iconVolume = default;
-    [SerializeField] private AudioListener _audioListener = default;
     [SerializeField] private bool _saveSettings = default;
 
     [Range(0.0f, 1.0f)]
@@ -70,11 +67,11 @@ public class AudioSystem : MonoBehaviour
 
             if (_volume == 0)
             {
-                UpdateIcons(false, 0);
+                UpdateIcons(isActive, 0);
             }
             else if (_volume == 1)
             {
-                UpdateIcons(true, _iconVolume.Length-1);
+                UpdateIcons(isActive, _iconVolume.Length-1);
             }
             else
             {
@@ -83,7 +80,7 @@ public class AudioSystem : MonoBehaviour
                 {
                     if (_volume <= j)
                     {
-                        UpdateIcons(true, i);
+                        UpdateIcons(isActive, i);
                         break;
                     }
                     j+=1f / _iconVolume.Length;
@@ -114,26 +111,29 @@ public class AudioSystem : MonoBehaviour
 
     private void UpdateIcons(bool value, int volumeIndex) 
     {
-        if (_audioListener != null)
-        {
-            _audioListener.enabled = value;
-        }
+        AudioListener.pause = !value;
 
-        if (_iconEnabledAudio != null)
+        if (_iconEnabledAudio.Length > 0)
         {
-            _iconEnabledAudio.SetActive(value);
-            if (_iconVolume.Length > 0 && volumeIndex >= 0)
+            for (int i = 0; i < _iconEnabledAudio.Length; i++)
             {
-                _iconEnabledAudio.GetComponent<Image>().sprite = _iconVolume[volumeIndex];
+                _iconEnabledAudio[i].SetActive(value);
+                if (_iconVolume.Length > 0 && volumeIndex >= 0)
+                {
+                    _iconEnabledAudio[i].GetComponent<Image>().sprite = _iconVolume[volumeIndex];
+                }
             }
         }
 
-        if (_iconDisabledAudio != null)
+        if (_iconDisabledAudio.Length > 0)
         {
-            _iconDisabledAudio.SetActive(!value);
-            if (_iconVolume.Length > 0 && volumeIndex >= 0)
+            for (int i = 0; i < _iconDisabledAudio.Length; i++)
             {
-                _iconDisabledAudio.GetComponent<Image>().sprite = _iconVolume[volumeIndex];
+                _iconDisabledAudio[i].SetActive(!value);
+                if (_iconVolume.Length > 0 && volumeIndex >= 0)
+                {
+                    _iconDisabledAudio[i].GetComponent<Image>().sprite = _iconVolume[volumeIndex];
+                }
             }
         }
     }
